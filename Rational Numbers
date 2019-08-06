@@ -1,0 +1,44 @@
+class Rational(object):
+    def __init__(self, p, q):
+        self.p = p
+        self.q = q
+
+    def __repr__(self):
+        return("These are the rational numbers %d" %(self.p/self.q))
+
+    def greatest_divisor(self):
+        r1 = self.p
+        r2 = self.q
+        if r2 == 0:
+            return r1
+        else:
+            return self.greatest_divisor(r2, r1 % r2)
+
+    def __add__(self, other):
+        sum = self.r1 + self.r2
+        return sum
+
+    def __sub__(self, other):
+        dif = self.r1 = self.r2
+        return dif
+
+    def __mul__(self, other):
+        prod = self.r1 = self.r2
+        return prod
+
+    def __truediv__(self, other):
+        d = self.r1 = self.r2
+        return d
+
+    def compare(self):
+        if self.r1 == self.r2:
+            return True
+        else:
+            return False
+
+    def __float__(self):
+        return float(self.r1), float(self.r2)
+
+my_numbers = Rational(20, 10)
+
+print (my_numbers)
