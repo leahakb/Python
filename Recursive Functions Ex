@@ -1,0 +1,118 @@
+"""
+Question 6: In sum...
+Write a function sum that takes a single argument n and computes the sum
+of all integers between 0 and n inclusive. Assume n is non-negative.
+"""
+def sum_rec(n):
+    if n == 1:
+        return 1
+    else:
+        return n+ sum_rec(n-1)
+
+n = int(input("Please enter a number: "))
+print("Sum here:")
+print (sum_rec(n))
+
+"""
+Question 7: Misconceptions
+Sum every other number
+"""
+def sum_every_other_number(x):
+    if x <= 0:
+        return 0
+    else:
+        return x + sum_every_other_number(x-2)
+
+print("Misconceptions here:")
+print(sum_every_other_number(9))
+"""
+Question 8: Hailstone
+For the hailstone function from homework 1, you pick a positive integer n
+as the start. If n is even, divide it by 2. If n is odd, multiply it by 3
+and add 1. Repeat this process until n is 1.
+Write a recursive version of hailstone that prints out the values
+of the sequence and returns the number of steps.
+"""
+
+print("Starting Hailstone here:")
+count = 1
+def hailstone(n, count):
+    if n == 1:
+        print(count)
+        return 1
+    elif n%2 == 0:
+        print("at n is even")
+        print (n/2)
+        count += 1
+        return hailstone(n/2, count)
+    else:
+        print("at n is odd")
+        print((n*3)+1)
+        count += 1
+        return hailstone((n*3)+1, count)
+    
+a = 10
+print (a)
+hailstone(a,count)
+print("End Hailstone here:")
+"""
+Question 12: Insect Combinatorics
+Consider an insect in an M by N grid.
+The insect starts at the bottom left corner, (0, 0), and wants to end up
+at the top right corner, (M-1, N-1). The insect is only capable of moving
+right or up. Write a function paths that takes a grid length and width and
+returns the number of different paths the insect can take from the start
+to the goal. (Thre is a closed-form solution to this problem, but try to
+answer it procedurally using recursion.)
+"""
+
+print("Insect Combinatorics here")
+def path(n, m):
+    if n == 0 and m == 0:
+        return 1
+    count = 0
+    if n > 0:
+        count += path(n - 1, m)
+    if m > 0:
+        count += path(n, m-1)
+        
+    return count
+n = 5
+m = 7
+print(path(n-1, m-1))
+
+   
+    
+def sum_digits(num):
+    if num == 0:
+        return 0
+    else:
+        return int(sum_digits(num/10)) + num%10 #num/10 removes the last digit
+                                                #num%10 gets the last digit
+print("Sum of digits here:")
+print (sum_digits(111222))
+
+# cout occurences in a string below
+
+def count_x(string):
+    if string == '':
+        return 0
+    last_number = string[-1] #checks if the last number is 'x'
+    if last_number == 'x':
+        return count_x(string[:-1])+1
+    return count_x(string[:-1]) +0
+
+print("Number of occurences here:")
+print (count_x('xxyxudx'))
+
+#factorial recursion
+print("Factorial here:")
+def factorial(x):
+    if x == 0:
+        return 1
+    return factorial(x-1)*x
+
+for n in range(5):
+    print (factorial(n))
+
+#Challange fibanaci function for ex fib of 12 is 144
