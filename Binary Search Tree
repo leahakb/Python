@@ -1,0 +1,59 @@
+"""
+Define a class Tree Node, and write the constructor, which takes one argument: value, and initializes the left and right children to None
+Write a function to print the tree
+Write a function that inserts a new value in the tree at the right location
+Write a function that looks up a value in the tree
+Write a function that removes a value from the tree
+"""
+class TreeNode(object):
+    def __init__(self, value):
+        self.value = value#root value
+        self.left_child = None
+        self.right_child = None
+
+    def printTree(self):#prints a tree
+        if self.left_child:#if child left is not at init state
+            self.left_child.printTree()#call on print function for left child
+        print(self.value)#print a root value
+        if self.right_child:#if child right is not at init state
+            self.right_child.printTree()#call on print function for right child
+
+    def insert(self, data):#new value to be inserted
+        if self.value:#if value exists
+            if self.value == data:
+                return False
+            elif data < self.value:#if value is less then root value
+                if self.left_child is None: #if at initial state
+                    self.left_child = TreeNode(data)#left set to value
+                else:#left child is not initial state
+                    self.left_child.insert(data)#insert to left
+            else: #if data > self.value
+                if self.right_child is None:#right value is at initial state
+                    self.right_child = TreeNode(data)#right set to value
+                else:
+                    self.right_child.insert(data)#insert to right
+        else:
+            self.value = TreeNode(data)#root value gets new value
+
+    def find(self, data):
+        if self.value == data:# if root value is same as new value
+            return True #the value is found
+        elif data < self.value: #if less then look at left child
+            if self.left_child:
+                self.left_child.find(data)#recursive lookup
+            else:
+                return False
+        else: #if data > self.value. If more then look at right child
+            if self.right_child:
+                self.right_child.find(data)#recursive lookup
+            else:
+                return False
+
+root = TreeNode(22)
+root.insert(44)
+root.insert(12)
+root.insert(33)
+root.insert(55)
+root.find(55)
+root.find(9)
+root.printTree()
