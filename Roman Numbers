@@ -1,0 +1,37 @@
+rom_numbers ={
+    "I":1,
+    "V":5,
+    "X":10,
+    "L":50,
+    "C":100,
+    "D":500,
+    "M":1000
+    }
+
+def calculate(string:str):
+    s = string.upper()
+    total = 0
+    prev_value = 0
+    for num in s:
+        #define current value of the substring num pointing to
+        cur_value = rom_numbers[num]
+        if prev_value == 0:#initialaze prev if not initialised
+            #if prev value is not assigned yet then it gets value from current value
+            prev_value = cur_value
+        elif cur_value <= prev_value:#if current less or equal then add to total
+            #if prev value was assigned already and its greater or eq to current value
+            #its added to total
+            total += prev_value
+            #and now prev value is changed to be the value of current value
+            prev_value = cur_value
+        else:#the current value is greater then prev therefore subtract from cur and add to total
+            total += cur_value - prev_value
+            prev_value = 0
+#This is for the last value when both prev and cur is setme.
+    if cur_value > 0 and prev_value > 0:
+        total += cur_value
+
+    return total
+        
+
+print(calculate(input('Enter a Roman number: \n')))
